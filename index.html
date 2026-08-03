@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, viewport-fit=cover">
+    <title>Unity Web Player | Cosmo Cat</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        overscroll-behavior: none;
+        background: #231F20;
+      }
+
+      #unity-canvas {
+        position: fixed;
+        inset: 0;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        border: 0;
+        touch-action: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      id="unity-canvas"
+      width=1920
+      height=1080
+      tabindex="-1"
+      style="background: #231F20"></canvas>
+    <script src="Build/8717bf3e6107a5d4aa644be217ebacc6.loader.js"></script>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
+      var isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+        || window.matchMedia("(pointer: coarse)").matches;
+      var unityDevicePixelRatio = isMobileDevice
+        ? 1
+        : Math.min(window.devicePixelRatio || 1, 2);
+
+      createUnityInstance(canvas, {
+        arguments: [],
+        dataUrl: "Build/36c9cf22f938b76e48a238c7fc330fc9.data.unityweb",
+        frameworkUrl: "Build/5ed39f24de0d2025ec01cb2128a25a24.framework.js.unityweb",
+        codeUrl: "Build/fb6065aa8b9a4446b593b08450a8bb49.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DuftyNifty",
+        productName: "Cosmo Cat",
+        productVersion: "CosmoCat_Public Content",
+        matchWebGLToCanvasSize: true,
+        devicePixelRatio: unityDevicePixelRatio,
+      }).then((unityInstance) => {
+      }).catch((message) => {
+        alert(message);
+      });
+    </script>
+  </body>
+</html>
